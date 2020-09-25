@@ -1,4 +1,6 @@
 from logging import getLogger
+import urllib.parse as urlparse
+from urllib.parse import parse_qs
 
 import arrow
 from ics import Event
@@ -28,6 +30,7 @@ class LiveEvent():
             begin=self.begin,
             duration={"hours": 2},
             description=f"{self.title}\n{self.url}",
+            location=f"https://img.youtube.com/vi/{self.video_id}/hqdefault.jpg",
             # use video_id as uid will make order of events static
             # (because uid is used in Event.__hash__)
             uid=self.video_id # TODO: コラボで同じ動画が複数ホロジュールに登録される可能性？
